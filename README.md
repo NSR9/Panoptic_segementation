@@ -23,9 +23,9 @@
   
   
   
-      2048 X H/32 X W/32  ----(Reduced)---> H/32 X W/32 X 256 ----->    Multi-Head Attention
-                                            Box Embeddings    ----->    model (8 heads in DeTr)  ------> N X M X H/32 X W/32
-                                                                                                         (Attention Maps)
+     2048 X H/32 X W/32 --(Reduced)--> H/32 X W/32 X 256 ----->  Multi-Head Attention           N X M X 
+                                       Box Embeddings    ----->  model (8 heads in DeTr) ---->  H/32 X W/32
+                                                                                              (Attention Maps)
                                                                                   
   
   
@@ -52,7 +52,11 @@
    * If observed in the below Image there are bounding boxes generated using object embedding and encoder-decoder model. Now these bounding boxes arepassed to the head maps 
      generated from the backbone structure and train to generate segmentation scales on the bounding box of each image seperately  and combine them later. 
      
-     // Image here
+   
+        ![Screenshot](bbox1.jpeg)  
+     
+     
+   
  
  
  ## Q3 - Then we concatenate these maps with Res5 Block (WHERE IS THIS COMING FROM?)
@@ -63,7 +67,9 @@
       activation map.
       As per the below Image with 4 bounding boxes there are 4 attention maps generated. 
       
-      // 2 images here
+       ![Screenshot](bbox1.jpeg)
+      
+       ![Screenshot](Attention.jpeg)
       
       The Resnet block stores the activation maps of the classes and is used to train over the bounding box to generate the mask logits for each bounding box which is nothing 
       but the segementation scale of the particular bounding box.
@@ -75,7 +81,7 @@
  
  ## Q4 - Then we perform the above steps (EXPLAIN THESE STEPS) And then we are finally left with the panoptic segmentation.
  
- // 1 image here
+  ![Screenshot](panoptic_seg.png)
  
   The above Image shows the whole process pipeline for panoptic segmentation using DETR(Detection Transformer)
   
@@ -92,7 +98,7 @@
  
  
  ## MY NEXT STEPS
- Here are my tentative steps to proceed forward with the next parts of the capstone project. 
+ Here are my next tentative steps to proceed forward with the upcoming parts of the capstone project. 
  
  * Get the dataset ready and convert it into COCO format.
  * Train a model on the dataset to predict bounding boxes of all the background and normal objects in the image.
@@ -102,7 +108,7 @@
  * Now train the model to generate segmentation scale on these images with bounding boxes by generating attention maps over resnet. 
  * For the final panoptic segmented image concatenate all the generated attention maps.
  
- This is the idea that I have now in regrads to how to proceed further on the project, These steps may change as i continue to learn. Thank you.
+ This is the idea that I have now in regrads to how to proceed further on the project, These steps may change as I continue to learn. Thank you.
  
  
  
