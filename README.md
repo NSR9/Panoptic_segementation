@@ -15,7 +15,7 @@
   where input is the image of dimension (3 X H X W).
   i.e 
                               
-                        Input Image(3 X H X W) -------------> RESNET-50(No FCL) -------------> output(d X H/32 X W/32) 
+            Input Image(3 X H X W) ------> RESNET-50(No FCL) ------> output(d X H/32 X W/32) 
                         
   The output from the Resnet-50 block is reduced before sent as an imput to the encoder model because the encoder expects a 1-Dimensional Input. To better Understand 
   this process let us say the imput image is a color image of dimension (3 X H X W), now this image is sent to the flattened Resnet-50 blok to get output of dimension
@@ -23,9 +23,9 @@
   
   
   
-      2048 X H/32 X W/32  ----(Reduced)---> H/32 X W/32 X 256 --------->    Multi-Head Attention
-                                            Box Embeddings    --------->    model (8 heads in DeTr)    -----------> N X M X H/32 X W/32
-                                                                                                                     (Attention Maps)
+      2048 X H/32 X W/32  ----(Reduced)---> H/32 X W/32 X 256 ----->    Multi-Head Attention
+                                            Box Embeddings    ----->    model (8 heads in DeTr)  ------> N X M X H/32 X W/32
+                                                                                                         (Attention Maps)
                                                                                   
   
   
